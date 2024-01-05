@@ -30,12 +30,18 @@ class AuthController extends StateNotifier<bool> {
 
   Stream<User?> get authStateChanges => _repository.authStateChanges;
 
-  void signInWithGoogle(BuildContext context) async {
+  void signInWithGoogle(BuildContext snackBarcontext) async {
     state = true;
     final user = await _repository.signInWithGoogle();
     state = false;
     user.fold(
-        (l) => Utilities.showAlert(context, l.message),
+        (l) => ScaffoldMessenger.of(snackBarcontext)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(
+            SnackBar(
+              content: Text(l.message),
+            ),
+          ),
         (userModel) =>
             _ref.read(userProvider.notifier).update((state) => userModel));
   }

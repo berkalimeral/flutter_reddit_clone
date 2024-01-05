@@ -2,8 +2,8 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
 class Utilities {
-  static showAlert(BuildContext context, String message) {
-    return ScaffoldMessenger.of(context)
+  static showAlert(BuildContext snackBarcontext, String message) {
+    return ScaffoldMessenger.of(snackBarcontext)
       ..hideCurrentSnackBar()
       ..showSnackBar(
         SnackBar(

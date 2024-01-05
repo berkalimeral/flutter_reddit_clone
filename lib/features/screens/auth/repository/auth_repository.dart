@@ -57,7 +57,8 @@ class AuthRepository {
           isAuthenticated: true,
           award: const [],
         );
-        await _userCollection.doc(user.uid).set(user.toJson());
+        var userJson = user.toMap();
+        await _userCollection.doc(user.uid).set(userJson);
       } else {
         user = await getUser(userCredential.user!.uid).first;
       }

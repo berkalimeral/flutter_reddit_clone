@@ -34,7 +34,7 @@ class CommunityController extends StateNotifier<bool> {
   final CommunityRepository _repository;
   final Ref _ref;
 
-  void createCommunity(String name, BuildContext context) async {
+  void createCommunity(String name, BuildContext snackBarcontext) async {
     state = true;
     final uid = _ref.watch(userProvider)?.uid ?? '';
     CommunityModel community = CommunityModel(
@@ -47,9 +47,9 @@ class CommunityController extends StateNotifier<bool> {
 
     final response = await _repository.createCommunity(community);
     state = false;
-    response.fold((l) => Utilities.showAlert(context, l.message), (r) {
-      Utilities.showAlert(context, 'Community created successfully!');
-      Routemaster.of(context).pop();
+    response.fold((l) => Utilities.showAlert(snackBarcontext, l.message), (r) {
+      Utilities.showAlert(snackBarcontext, 'Community created successfully!');
+      Routemaster.of(snackBarcontext).pop();
     });
   }
 

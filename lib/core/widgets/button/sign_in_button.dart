@@ -5,7 +5,9 @@ import '../../../assets.dart';
 import '../../../features/screens/auth/controller/auth_controller.dart';
 
 class SignInButton extends ConsumerWidget {
-  const SignInButton({super.key});
+  const SignInButton({
+    Key? key,
+  }) : super(key: key);
 
   void signInWithGoogle(WidgetRef ref, BuildContext context) {
     ref.read(authControllerProvider.notifier).signInWithGoogle(context);
